@@ -43,7 +43,7 @@ async function checkWeather(userCity){
             weatherIcon.src = './images/clear.png';
             weatherIcon.alt = "clear weather";
         }else if(data.weather[0].main == "Clouds"){
-            weatherIcon.src = './images/Clouds.png';
+            weatherIcon.src = './images/clouds.png';
             weatherIcon.alt = "Clouds weather";
         }else if(data.weather[0].main == "Drizzle"){
             weatherIcon.src = './images/drizzle.png';
