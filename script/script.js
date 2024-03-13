@@ -16,10 +16,10 @@ async function checkWeather(userCity){
     // call api and get deta
     const response = await fetch(apiUrl + userCity + `&appid=${apiKey}`)
     let data = await response.json()
-    console.log(data)
+
 
     
-    if ("404" == data.code) {
+    if ("404" == data.cod) {
       // error handle with if else
       document.querySelector(".city").innerHTML = "Your city name is invalid";
       document.querySelector(".city").classList.add("invalid-style");
@@ -63,16 +63,26 @@ async function checkWeather(userCity){
 
 // take user data from search box 
 searchButton.addEventListener("click", () => {
-    userCity = searchBox.value;
-    checkWeather(userCity)
+    const userCity = searchBox.value;
+   if(!(userCity === "")){
+       checkWeather(userCity)
+       document.getElementById("requiredField").style.display = "none"
+   }else{
+    document.getElementById("requiredField").style.display = "block";
+   }
 })
 
 
 //take user data from search box  when keydown enter key 
 window.addEventListener("keydown", (e)=> {
     if (e.key === "Enter"){
-        userCity = searchBox.value;
-        checkWeather(userCity)
+        const userCity = searchBox.value;
+        if(!(userCity === "")){
+            checkWeather(userCity)
+            document.getElementById("requiredField").style.display = "none"
+        }else{
+         document.getElementById("requiredField").style.display = "block";
+        }
     }
     
 })
