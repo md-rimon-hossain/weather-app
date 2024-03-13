@@ -19,42 +19,41 @@ async function checkWeather(userCity){
     console.log(data)
 
     
-    if ("404"== data.cod){
-        // error handle with if else 
-        document.querySelector(".city").innerHTML = "Your city name is invalid";
-        document.querySelector(".city").classList.add('invalid-style');
+    if ("404" == data.code) {
+      // error handle with if else
+      document.querySelector(".city").innerHTML = "Your city name is invalid";
+      document.querySelector(".city").classList.add("invalid-style");
 
-        //all value empty 
-        document.querySelector(".temp").innerHTML = ' __°C';
-        document.querySelector(".humidity").innerHTML = '__ %';
-        document.querySelector(".wind").innerHTML='__  km/h';
-    }else {
+      //all value empty
+      document.querySelector(".temp").innerHTML = " __°C";
+      document.querySelector(".humidity").innerHTML = "__ %";
+      document.querySelector(".wind").innerHTML = "__  km/h";
+    } else {
+      // display all data on HTML document
+      document.querySelector(".city").innerHTML = data.name;
+      document.querySelector(".city").classList.remove("invalid-style");
+      document.querySelector(".temp").innerHTML =
+        Math.round(data.main.temp) + "°C";
+      document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+      document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
 
-        // display all data on HTML document 
-        document.querySelector(".city").innerHTML = data.name;
-        document.querySelector(".city").classList.remove('invalid-style');
-        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + '°C';
-        document.querySelector(".humidity").innerHTML = data.main.humidity + '%';
-        document.querySelector(".wind").innerHTML = data.wind.speed + ' km/h';
-
-
-        // depend weather condition and change image 
-        if(data.weather[0].main == "Clear"){
-            weatherIcon.src = './images/clear.png';
-            weatherIcon.alt = "clear weather";
-        }else if(data.weather[0].main == "Clouds"){
-            weatherIcon.src = './images/clouds.png';
-            weatherIcon.alt = "Clouds weather";
-        }else if(data.weather[0].main == "Drizzle"){
-            weatherIcon.src = './images/drizzle.png';
-            weatherIcon.alt = "Drizzle weather";
-        }else if(data.weather[0].main == "Mist"){
-            weatherIcon.src = './images/mist.png';
-            weatherIcon.alt = "Mist weather";
-        }else if(data.weather[0].main == "Rain"){
-            weatherIcon.src = './images/rain.png';
-            weatherIcon.alt = "Rain weather";
-        }
+      // depend weather condition and change image
+      if (data.weather[0].main == "Clear") {
+        weatherIcon.src = "./images/clear.png";
+        weatherIcon.alt = "clear weather";
+      } else if (data.weather[0].main == "Clouds") {
+        weatherIcon.src = "./images/clouds.png";
+        weatherIcon.alt = "Clouds weather";
+      } else if (data.weather[0].main == "Drizzle") {
+        weatherIcon.src = "./images/drizzle.png";
+        weatherIcon.alt = "Drizzle weather";
+      } else if (data.weather[0].main == "Mist") {
+        weatherIcon.src = "./images/mist.png";
+        weatherIcon.alt = "Mist weather";
+      } else if (data.weather[0].main == "Rain") {
+        weatherIcon.src = "./images/rain.png";
+        weatherIcon.alt = "Rain weather";
+      }
     }
     
 
